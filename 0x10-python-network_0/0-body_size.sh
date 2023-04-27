@@ -1,6 +1,3 @@
 #!/bin/bash
-#write bash script
-url=$1
-size=$(curl -sI $url | grep -i "Content-Length:" | awk '{print $2}' | tr -d '\r')
-
-echo "Size of the response body: $size bytes"
+#a Bash script that takes in a URL, sends a request to that URL
+echo "$(curl -s -w '%{size_download}' -o /dev/null $1)"
