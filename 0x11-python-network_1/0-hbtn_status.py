@@ -1,8 +1,19 @@
 #!/usr/bin/python3
 import urllib.request
 
-url = "https://alx-intranet.hbtn.io/status"
 
-with urllib.request.urlopen(url) as response:
-    data = response.read()
-    print(data.decode("utf-8"))
+def display_info(response):
+    body = response.read()
+    print("- type: {}".format(type(body)))
+    print("- content: {}".format(body))
+    print("- utf8 content: {}".format(body.decode('utf-8')))
+
+
+def fetch_url(url):
+    with urllib.request.urlopen(url) as response:
+        display_info(response)
+
+
+if __name__ == "__main__":
+    url = "https://alx-intranet.hbtn.io/status"
+    fetch_url(url)
